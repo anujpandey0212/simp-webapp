@@ -1,0 +1,26 @@
+{
+  "name": "simp-webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anujpandey0212/simp-webapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anujpandey0212/simp-webapp/issues"
+  },
+  "homepage": "https://github.com/anujpandey0212/simp-webapp#readme",
+  "dependencies": {
+    "expres": "0.0.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.1.1"
+  }
+}
