@@ -21,6 +21,8 @@
   "dependencies": {
     "expres": "0.0.5",
     "express": "^4.17.1",
-    "mongoose": "^6.1.1"
+    "mongoose": "^6.1.1",
+    "react-modal": "^3.14.4",
+    "react-popupbox": "^2.0.8"
   }
 }
