@@ -56,8 +56,7 @@ export default function BasicCard() {
                 }
                 <div>
                   <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => React.Component.customDialog = ref} title="A Custom Modal">
-                      I'm a custom modal!
-                      <iframe src="https://www.simphy.com" id='frame1' height={500} ></iframe>
+                      <iframe src="https://www.simphy.com" id='frame1' height={500} width={900}></iframe>
                   </SkyLight>
                   </div>
                 
