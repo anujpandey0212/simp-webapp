@@ -1,6 +1,7 @@
 const Mongoose =require("mongoose");
 const express = require("express");
 const cors=require("cors");
+bodyparser = require('body-parser')
 // const model=require("User");
 
 const db = "mongodb+srv://anuj:LemI3PfqZmMRfGPk@shikhar.fjzu8.mongodb.net/employees";
@@ -44,6 +45,9 @@ const UserSchema = Mongoose.Schema({
 
 });
 
+app.use(bodyparser.urlencoded({extended:false}))
+app.use(bodyparser.json())
+
 const User = Mongoose.model('records', UserSchema);
 app.use(cors());
 User.find({ name: 'anuj'}, function (err, docs) {
@@ -76,7 +80,7 @@ app.get("/api", (req, res) => {
 
 app.post("/api",(req,res)=>{
   console.log(req.body);
-  const [name,title_name,image,src]=req.body;
+  const {name,title_name,image,src}=req.body;
 const newuser=new User({
 name,
 title_name,
