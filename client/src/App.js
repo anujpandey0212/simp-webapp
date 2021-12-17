@@ -1,13 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 import SSidebar from './components/sidebar';
-import Ccards1 from './components/cards';
+import Header from './components/header';
+import Main from './Main';
 
 function App() {
   return (
     <div className="App">
-      <SSidebar/>
-      <Ccards1/>
+      <Header/>
+      <div className='division1'>
+        <SSidebar/>
+        <Main/>
+      </div>
+      
     </div>
   )
 }

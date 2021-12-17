@@ -1,5 +1,5 @@
 .cards1{
-  padding-left: 100px;
+  padding-left: 180px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -31,6 +31,6 @@
     content: "'after'";
     opacity: 1;
   }
-  /* .image2{
+  .image2{
     height: 70;
-  } */
+  }

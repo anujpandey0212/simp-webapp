@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node server/index.js"
+    "client": "cd client && yarn dev-server",
+    "start": "node server/index.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,9 @@
   },
   "homepage": "https://github.com/anujpandey0212/simp-webapp#readme",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^31.1.0",
+    "@ckeditor/ckeditor5-react": "^3.0.3",
+    "cors": "^2.8.5",
     "expres": "0.0.5",
     "express": "^4.17.1",
     "mongoose": "^6.1.1",

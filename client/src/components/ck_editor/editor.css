@@ -1,0 +1,19 @@
+.editor{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    /* padding-left: 20vh;
+    padding-right: 20vh; */
+}
+.editor_header{
+    padding-top: 30px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+/* .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused){
+    height: 265px;
+} */

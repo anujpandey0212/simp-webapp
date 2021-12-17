@@ -1,5 +1,6 @@
 const Mongoose =require("mongoose");
 const express = require("express");
+const cors=require("cors");
 // const model=require("User");
 
 const db = "mongodb+srv://anuj:LemI3PfqZmMRfGPk@shikhar.fjzu8.mongodb.net/employees";
@@ -27,11 +28,24 @@ const UserSchema = Mongoose.Schema({
   name: {
       type: String,
       required: true
+  },
+  title_name:{
+    type: String,
+    required: true
+  },
+  image:{
+    type: String,
+    required: true
+  },
+  src:{
+    type: String,
+    required: true
   }
+
 });
 
 const User = Mongoose.model('records', UserSchema);
-
+app.use(cors());
 User.find({ name: 'anuj'}, function (err, docs) {
   if (err){
       console.log(err);
@@ -59,3 +73,15 @@ app.get("/api", (req, res) => {
     })
  
 });
+
+app.post("/api",(req,res)=>{
+  console.log(req.body);
+  const [name,title_name,image,src]=req.body;
+const newuser=new User({
+name,
+title_name,
+image,
+src
+})
+newuser.save();
+})

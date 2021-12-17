@@ -16,6 +16,6 @@
     margin-top: 10px;
     padding-bottom: 10px;
 }
-/* .hamburger-react{
-    padding-left: 30px;
-} */
+.hamburger-react{
+    margin-left: 8px;
+}
