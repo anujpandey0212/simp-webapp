@@ -17,13 +17,19 @@ class editor extends Component {
     componentDidMount(){
         //simulation name editor
         ClassicEditor
-    .create( document.querySelector( '#editor1' ) )
+    .create( document.querySelector( '#editor1' ),{
+        autoParagraph : false,
+        
+    } )
     .then( editor1 => {
         console.log( editor1 );
         this.setState({
             editor1: editor1
           });
           this.state.editor1.setData( 'Some text.' );
+        //   this.state.editor1.config.enterMode = 2
+        //   this.state.editor1.config.autoParagraph = false;
+          
     } )
     .catch( error => {
         console.error( error );
@@ -71,6 +77,7 @@ class editor extends Component {
         console.error( error );
     } );
 
+    
     }
     
     render() {
@@ -105,7 +112,7 @@ class editor extends Component {
                         src:'h'
                         })
                     };
-                    fetch('http://localhost:3001/api', requestOptions)
+                    fetch('http://localhost:3001/api/', requestOptions)
                 }}>ADD</Button>
             </div>
         );
