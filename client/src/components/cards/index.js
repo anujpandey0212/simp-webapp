@@ -23,7 +23,10 @@ function BasicCard({currentItems}) {
   return (
       <div className='cards1' id='cards1'>
         {currentItems?.map((data, k) => (
-                    <Card sx={{ minWidth: 275 }} key={k}>
+                    <Card sx={{ minWidth: 275 }} key={k} onClick={()=>{React.Component.customDialog.show()
+                      var frame1= document.getElementById("frame1");
+                      frame1.src=data.src;
+                       }}>
                     <CardContent>
                      <img src={data.image} height={110} className='image2'></img>
                      <Typography >
@@ -34,10 +37,7 @@ function BasicCard({currentItems}) {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" onClick={()=>{React.Component.customDialog.show()
-                     var frame1= document.getElementById("frame1");
-                     frame1.src=data.src;
-                      }}>Learn More</Button>
+                  
                     </CardActions>
                     
                   </Card>
