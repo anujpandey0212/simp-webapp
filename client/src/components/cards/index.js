@@ -7,19 +7,19 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./cards.css";
 import SkyLight from 'react-skylight';
+import ReactPaginate from 'react-paginate';
 
+function BasicCard({currentItems}) {
 
-export default function BasicCard() {
+  // const [data, setData] = React.useState(null);
 
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => {setData(data);
-      console.log(data)
-  });
-  }, []);
+  // React.useEffect(() => {
+  //   fetch("/api")
+  //     .then((res) => res.json())
+  //     .then((data) => {setData(data);
+  //     console.log(data)
+  // });
+  // }, []);
 
   var myBigGreenDialog = {
     backgroundColor: '#00897B',
@@ -32,7 +32,7 @@ export default function BasicCard() {
  
   return (
       <div className='cards1' id='cards1'>
-        {data?.map((data, k) => (
+        {currentItems?.map((data, k) => (
                     <Card sx={{ minWidth: 275 }} key={k}>
                     <CardContent>
                      <img src={data.image} height={110} className='image2'></img>
@@ -66,8 +66,62 @@ export default function BasicCard() {
   );
 }
 
-// function customElements(){
-// return(
-  
-// )
+// function Items({ currentItems }) {
+//   return (
+//     <>
+//       {currentItems &&
+//         currentItems.map((item) => (
+//           <div>
+//             <h3>Item #{item}</h3>
+//           </div>
+//         ))}
+//     </>
+//   );
 // }
+
+export default function PaginatedItems({ itemsPerPage }) {
+  // We start with an empty list of items.
+  const [currentItems, setCurrentItems] = React.useState(null);
+  const [pageCount, setPageCount] = React.useState(0);
+  // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
+  const [itemOffset, setItemOffset] = React.useState(0);
+  const [data, setData] = React.useState(null);
+  React.useEffect(() => {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => {setData(data);
+      console.log(data);
+      const endOffset = itemOffset + itemsPerPage;
+      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+      setCurrentItems(data.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(data.length / itemsPerPage));
+    })
+    // Fetch items from another resources.
+   
+  }, [itemOffset, itemsPerPage]);
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % data.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
+  return (
+    <div className='pagination_cards'>
+      <BasicCard currentItems={currentItems} />
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
+    </div>
+  );
+}

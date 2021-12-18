@@ -34,3 +34,7 @@
   .image2{
     height: 70;
   }
+  .pagination_cards{
+    display: flex;
+    flex-direction: column;
+  }
