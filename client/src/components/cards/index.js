@@ -11,16 +11,6 @@ import ReactPaginate from 'react-paginate';
 
 function BasicCard({currentItems}) {
 
-  // const [data, setData] = React.useState(null);
-
-  // React.useEffect(() => {
-  //   fetch("/api")
-  //     .then((res) => res.json())
-  //     .then((data) => {setData(data);
-  //     console.log(data)
-  // });
-  // }, []);
-
   var myBigGreenDialog = {
     backgroundColor: '#00897B',
     color: '#ffffff',
@@ -58,26 +48,11 @@ function BasicCard({currentItems}) {
                   <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => React.Component.customDialog = ref} title="A Custom Modal">
                       <iframe src="https://www.simphy.com" id='frame1' height={500} width={900}></iframe>
                   </SkyLight>
-                  </div>
-                
-
+                </div>
     </div>
    
   );
 }
-
-// function Items({ currentItems }) {
-//   return (
-//     <>
-//       {currentItems &&
-//         currentItems.map((item) => (
-//           <div>
-//             <h3>Item #{item}</h3>
-//           </div>
-//         ))}
-//     </>
-//   );
-// }
 
 export default function PaginatedItems({ itemsPerPage }) {
   // We start with an empty list of items.

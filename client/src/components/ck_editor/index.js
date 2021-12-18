@@ -11,7 +11,11 @@ class editor extends Component {
             editor1:null,
             editor2:null,
             editor3:null,
-            editor4:null
+            editor4:null,
+            editor1_data:null,
+            editor2_data:null,
+            editor3_data:null,
+            editor4_data:null,
         } 
     }
     componentDidMount(){
@@ -101,19 +105,17 @@ class editor extends Component {
                     <div id="editor4"></div>
                 </div>
                 <Button variant="contained" onClick={()=>{
-                    console.log(this.state.editor1.getData());
-                    //handling the server post request
-                    const requestOptions = {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name: 'h',
-                        title_name:'h',
-                        image:'h',
-                        src:'h'
-                        })
-                    };
-                    fetch('http://localhost:3001/api/', requestOptions)
-                }}>ADD</Button>
+                   const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: this.state.editor1.getData(),
+                    title_name:this.state.editor2.getData(),
+                    image:this.state.editor3.getData(),
+                    src:this.state.editor4.getData()
+                    })
+                };
+                fetch('/api', requestOptions)
+            }}>ADD</Button>
             </div>
         );
     }
