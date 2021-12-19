@@ -48,9 +48,9 @@ const UserSchema = Mongoose.Schema({
 app.use(bodyparser.urlencoded({extended:false}))
 app.use(bodyparser.json())
 
-const User = Mongoose.model('records', UserSchema);
+const Simulations = Mongoose.model('records', UserSchema);
 app.use(cors());
-User.find({ name: 'anuj'}, function (err, docs) {
+Simulations.find({ name: 'anuj'}, function (err, docs) {
   if (err){
       console.log(err);
   }
@@ -63,7 +63,7 @@ User.find({ name: 'anuj'}, function (err, docs) {
 app.get("/api", (req, res) => {
   var query = req.params.query;
 
-    User.find({
+    Simulations.find({
         'request': query
     }, function(err, result) {
         if (err) throw err;
@@ -81,7 +81,7 @@ app.get("/api", (req, res) => {
 app.post("/api",(req,res)=>{
   console.log(req.body);
   const {name,title_name,image,src}=req.body;
-const newuser=new User({
+const newuser=new Simulations({
 name,
 title_name,
 image,
