@@ -47,7 +47,7 @@ const UserSchema = Mongoose.Schema({
 
 app.use(bodyparser.urlencoded({extended:false}))
 app.use(bodyparser.json())
-
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 const Simulations = Mongoose.model('records', UserSchema);
 app.use(cors());
 Simulations.find({ name: 'anuj'}, function (err, docs) {
@@ -76,6 +76,10 @@ app.get("/api", (req, res) => {
         }
     })
  
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
 app.post("/api",(req,res)=>{
