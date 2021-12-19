@@ -4,7 +4,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
-.css-pwngrv-MuiPaper-root-MuiCard-root{
+.cards-css{
     margin: 2rem;
     height:240px;
     border-radius: 5px;
@@ -14,7 +14,7 @@
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     cursor: pointer;
 }
-  .css-pwngrv-MuiPaper-root-MuiCard-root:hover {
+  .cards-css:hover {
     -webkit-transform: scale(1.25, 1.25);
     -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);

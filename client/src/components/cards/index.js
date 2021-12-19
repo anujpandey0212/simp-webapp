@@ -26,7 +26,7 @@ function BasicCard({currentItems}) {
                       var frame1= document.getElementById("frame1");
                       frame1.src=data.src;
                       React.Component.customDialog.show()
-                       }}>
+                       }} className="cards-css">
                     <CardContent>
                      <img src={data.image} height={110} className='image2'></img>
                      <Typography >
