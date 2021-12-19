@@ -1,20 +1,19 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import "./cards.css";
 import SkyLight from 'react-skylight';
 import ReactPaginate from 'react-paginate';
+import image1 from "../../assets/fullscreen.png";
 
 function BasicCard({currentItems}) {
 
   var myBigGreenDialog = {
     backgroundColor: '#00897B',
     color: '#ffffff',
-    width: '70%',
+    width: '64%',
     height: '600px',
     marginTop: '-300px',
     marginLeft: '-35%',
@@ -23,9 +22,10 @@ function BasicCard({currentItems}) {
   return (
       <div className='cards1' id='cards1'>
         {currentItems?.map((data, k) => (
-                    <Card sx={{ minWidth: 275 }} key={k} onClick={()=>{React.Component.customDialog.show()
+                    <Card sx={{ minWidth: 275 }} key={k} onClick={()=>{
                       var frame1= document.getElementById("frame1");
                       frame1.src=data.src;
+                      React.Component.customDialog.show()
                        }}>
                     <CardContent>
                      <img src={data.image} height={110} className='image2'></img>
@@ -36,16 +36,14 @@ function BasicCard({currentItems}) {
                         Topic Name - {data.topic_name}
                       </Typography>
                     </CardContent>
-                    <CardActions>
-                  
-                    </CardActions>
-                    
+                    <CardActions>  
+                       <img src={image1} height={15} onClick={()=>{window.location.href=data.src}}></img>
+                    </CardActions>            
                   </Card>
-                  
                 ))
                 }
                 <div>
-                  <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => React.Component.customDialog = ref} title="A Custom Modal">
+                  <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={ref => React.Component.customDialog = ref} title="Simulation">
                       <iframe src="https://www.simphy.com" id='frame1' height={500} width={900}></iframe>
                   </SkyLight>
                 </div>
