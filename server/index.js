@@ -42,6 +42,10 @@ const UserSchema = Mongoose.Schema({
   src:{
     type: String,
     required: true
+  },
+  description:{
+    type: String,
+    required:true
   }
 
 });
@@ -85,12 +89,13 @@ app.get('*', (req, res) => {
 
 app.post("/api",(req,res)=>{
   console.log(req.body);
-  const {name,title_name,image,src}=req.body;
+  const {name,title_name,image,src,description}=req.body;
 const newuser=new Simulations({
 name,
 title_name,
 image,
-src
+src,
+description
 })
 newuser.save();
 })
