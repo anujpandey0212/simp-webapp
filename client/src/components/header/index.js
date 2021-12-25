@@ -12,8 +12,11 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
+import Auth from "../../auth";
 
 import "./header.css"
+
+
 
 export default function Header() {
 
@@ -25,6 +28,24 @@ export default function Header() {
   });
 
 const navigate=useNavigate();
+
+function login(){
+  // console.log('login');
+  
+  console.log(Auth.isAuthenticated())
+  return true;
+  // auth.login(navigate('/'));
+  
+}
+
+function logout(){
+  console.log('logout');
+  // Auth.authenticated=false;
+  Auth.logout(()=>{navigate('/')});
+  console.log(Auth.isAuthenticated())
+  // auth.logout();
+  return false;
+}
 
   const displayDesktop = () => {
     return (<Toolbar>
@@ -39,6 +60,14 @@ const navigate=useNavigate();
             <MenuIcon/>
           </IconButton>
       <img src={image1} className="image1"></img>
+      {/* <React.View style={{marginLeft:100}}> */}
+      <button onClick={login} style={{marginLeft:100}}>
+  Login
+</button> 
+<button onClick={logout} style={{marginLeft:120}}>
+  Logout
+</button>
+{/* </React.View> */}
     </Toolbar>
     )
   };
