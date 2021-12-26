@@ -1,27 +1,19 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import auth from "./auth";
+import { Route ,useNavigate,useLocation} from "react-router-dom";
 
-export const ProtectedRoute = ({
-  component: Component,
-  ...rest
-}) => {
+export const ProtectedRoute = ({component: Component}) => {
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+  console.log("this", isAuthenticated);
+  const navigate=useNavigate();
+  const location = useLocation();
   return (
     <Route
-      {...rest}
-      render={props => {
-        if (auth.isAuthenticated()) {
-          return <Component {...props} />;
+      render={()=> {
+        if (isAuthenticated) {
+          return <Component/>;
         } else {
           return (
-            <Redirect
-              to={{
-                pathname: "/",
-                state: {
-                  from: props.location
-                }
-              }}
-            />
+            navigate("/simulation",{state:{link:location.state.link}})
           );
         }
       }}

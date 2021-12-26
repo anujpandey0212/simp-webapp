@@ -34,6 +34,12 @@
     padding: 1%;
     margin-top: 1%;
 }
+#exampleInputPassword4{
+    width: 80%;
+    margin-left: 10%;
+    padding: 1%;
+    margin-top: 1%;
+}
 .ck-editor{
     width: 50%;
 }

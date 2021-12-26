@@ -3,10 +3,11 @@ const express = require("express");
 const cors=require("cors");
 const path=require("path");
 bodyparser = require('body-parser')
-// const model=require("User");
+const app = express();
+
+//---------------------------------Mongoose things-----------------------------------------------------
 
 const db = "mongodb+srv://anuj:LemI3PfqZmMRfGPk@shikhar.fjzu8.mongodb.net/employees";
-
 // Connect to MongoDB
 Mongoose
   .connect(
@@ -17,21 +18,25 @@ Mongoose
   })
   .catch(err => console.log(err));
 
+//---------------------------------Express things-----------------------------------------------------
 
 const PORT = process.env.PORT || 3001;
-
-const app = express();
-
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+app.use(bodyparser.urlencoded({extended:false}))
+app.use(bodyparser.json())
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(cors());
 
-const UserSchema = Mongoose.Schema({
+//---------------------------------Defining Schemas-----------------------------------------------------
+
+const SimulationSchema = Mongoose.Schema({
   name: {
       type: String,
       required: true
   },
-  title_name:{
+  topic_name:{
     type: String,
     required: true
   },
@@ -46,16 +51,35 @@ const UserSchema = Mongoose.Schema({
   description:{
     type: String,
     required:true
+  },
+  ragistration_required:{
+    type:String,
+    required:true
   }
 
 });
 
-app.use(bodyparser.urlencoded({extended:false}))
-app.use(bodyparser.json())
-app.use(express.static(path.resolve(__dirname, '../client/build')));
-const Simulations = Mongoose.model('records', UserSchema);
-app.use(cors());
-Simulations.find({ name: 'anuj'}, function (err, docs) {
+const UserSchema = Mongoose.Schema({
+  name: {
+      type: String,
+      required: true
+  },
+  password:{
+    type: String,
+    required: true
+  },
+  ragistered:{
+    type:Boolean,
+    required:true
+  }
+});
+
+//---------------------------------Handeling the collections of records-----------------------------------------------------
+
+const Simulations = Mongoose.model('records', SimulationSchema);
+const Users =Mongoose.model('users',UserSchema);
+
+Users.find({ name: 'anuj'}, function (err, docs) {
   if (err){
       console.log(err);
   }
@@ -64,10 +88,10 @@ Simulations.find({ name: 'anuj'}, function (err, docs) {
   }
 });
 
+//---------------------------------Handling get and post request-----------------------------------------------------
 
 app.get("/api", (req, res) => {
   var query = req.params.query;
-
     Simulations.find({
         'request': query
     }, function(err, result) {
@@ -80,7 +104,23 @@ app.get("/api", (req, res) => {
             }))
         }
     })
- 
+});
+
+app.get("/signin",(req,res)=>{
+  var query=req.params.query;
+
+  Users.find({
+    'request':query
+  },function(err,result){
+    if(err) throw err;
+    if (result){
+      res.json(result)
+    }else{
+      res.send(JSON.stringify({
+        error:'Error'
+      }))
+    }
+  })
 });
 
 app.get('*', (req, res) => {
@@ -89,13 +129,24 @@ app.get('*', (req, res) => {
 
 app.post("/api",(req,res)=>{
   console.log(req.body);
-  const {name,title_name,image,src,description}=req.body;
-const newuser=new Simulations({
+  const {name,topic_name,image,src,description,ragistration_required}=req.body;
+const newsimulation=new Simulations({
 name,
-title_name,
+topic_name,
 image,
 src,
-description
+description,
+ragistration_required
 })
-newuser.save();
+newsimulation.save();
 })
+
+app.post('/signin',(req,res)=>{
+  const {name,password,ragistered}=req.body;
+  const newuser=new Users({
+    name,
+    password,
+    ragistered
+  })
+  newuser.save();
+});

@@ -12,11 +12,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
-import Auth from "../../auth";
-
 import "./header.css"
-
-
 
 export default function Header() {
 
@@ -30,21 +26,11 @@ export default function Header() {
 const navigate=useNavigate();
 
 function login(){
-  // console.log('login');
-  
-  console.log(Auth.isAuthenticated())
-  return true;
-  // auth.login(navigate('/'));
-  
+  navigate('/signin');
 }
 
-function logout(){
-  console.log('logout');
-  // Auth.authenticated=false;
-  Auth.logout(()=>{navigate('/')});
-  console.log(Auth.isAuthenticated())
-  // auth.logout();
-  return false;
+function ragister(){
+
 }
 
   const displayDesktop = () => {
@@ -64,8 +50,8 @@ function logout(){
       <button onClick={login} style={{marginLeft:100}}>
   Login
 </button> 
-<button onClick={logout} style={{marginLeft:120}}>
-  Logout
+<button onClick={ragister} style={{marginLeft:120}}>
+  Ragister
 </button>
 {/* </React.View> */}
     </Toolbar>

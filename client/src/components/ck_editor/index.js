@@ -51,6 +51,10 @@ class editor extends Component {
                     <label>Source Url</label>
                     <input type="password" className="form-control" id="exampleInputPassword3" placeholder="Source Url" onChange={this.handelaluechange}></input>
                 </div>
+                <div className="form-group">
+                    <label>Ragistration required</label>
+                    <input type="password" className="form-control" id="exampleInputPassword4" placeholder="Source Url" onChange={this.handelaluechange}></input>
+                </div>
                 <div id='editor_container'>
                     <label>Description</label>
                     <div id="editor4"></div>
@@ -62,9 +66,10 @@ class editor extends Component {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name: document.getElementById('exampleInputEmail1').value,
-                    title_name:document.getElementById('exampleInputPassword1').value,
+                    topic_name:document.getElementById('exampleInputPassword1').value,
                     image:document.getElementById('exampleInputPassword3').value,
                     src:document.getElementById('exampleInputPassword3').value,
+                    ragistration_required:document.getElementById("exampleInputPassword4").value,
                     description:this.state.editor4.getData(),
                     })
                 };

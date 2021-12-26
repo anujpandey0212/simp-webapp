@@ -9,21 +9,17 @@ import { useNavigate } from "react-router-dom";
 
 function BasicCard({currentItems},props) {
   let navigate = useNavigate();
-  var myBigGreenDialog = {
-    backgroundColor: '#00897B',
-    color: '#ffffff',
-    width: '64%',
-    height: '600px',
-    marginTop: '-300px',
-    marginLeft: '-35%',
-  };
-  
- 
+
   return (
       <div className='cards1' id='cards1'>
         {currentItems?.map((data, k) => (
                     <Card sx={{ minWidth: 275 }} key={k} onClick={()=>{
-                      navigate('/simulation',{state:{link:data.src}});
+                      if(data.ragistration_required){
+                        navigate('/simulationplay',{state:{link:data.src}});
+                      }
+                      else{
+                        navigate('/simulation',{state:{link:data.src}});
+                      }
                        }} className="cards-css">
                     <CardContent>
                      <img src={data.image} width={275} className='image2'></img>
