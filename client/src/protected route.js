@@ -6,5 +6,5 @@ export const ProtectedRoute = ({ children }) => {
   console.log("this", isAuthenticated);
   const navigate=useNavigate();
   const location = useLocation();
-  return isAuthenticated ? <Navigate to="/simulation" state={{link:location.state.link}}></Navigate> : <Navigate to="/ragister" />;
+  return isAuthenticated ? <Navigate to="/simulation" state={{link:location.state.link}}></Navigate> : <Navigate to="/notfound" />;
 };
