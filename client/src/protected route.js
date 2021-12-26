@@ -1,22 +1,10 @@
 import React from "react";
-import { Route ,useNavigate,useLocation} from "react-router-dom";
+import { Route ,useNavigate,useLocation,Navigate} from "react-router-dom";
 
-export const ProtectedRoute = ({component: Component}) => {
+export const ProtectedRoute = ({ children }) => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   console.log("this", isAuthenticated);
   const navigate=useNavigate();
   const location = useLocation();
-  return (
-    <Route
-      render={()=> {
-        if (isAuthenticated) {
-          return <Component/>;
-        } else {
-          return (
-            navigate("/simulation",{state:{link:location.state.link}})
-          );
-        }
-      }}
-    />
-  );
+  return isAuthenticated ? <Navigate to="/simulation" state={{link:location.state.link}}></Navigate> : <Navigate to="/ragister" />;
 };

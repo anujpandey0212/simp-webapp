@@ -5,17 +5,18 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import "./cards.css";
 import Pagination from '@mui/material/Pagination';
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation} from "react-router-dom";
 
 function BasicCard({currentItems},props) {
   let navigate = useNavigate();
+  let location=useLocation();
 
   return (
       <div className='cards1' id='cards1'>
         {currentItems?.map((data, k) => (
                     <Card sx={{ minWidth: 275 }} key={k} onClick={()=>{
                       if(data.ragistration_required){
-                        navigate('/simulationplay',{state:{link:data.src}});
+                        navigate('/authenticate',{state:{link:data.src}});
                       }
                       else{
                         navigate('/simulation',{state:{link:data.src}});
