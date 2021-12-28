@@ -9,7 +9,6 @@ import { ProtectedRoute } from './protected route';
 import Notfound from './components/not_fouund';
 
 const Main = () => {
-  localStorage.clear();
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   console.log("this", isAuthenticated);
   return (

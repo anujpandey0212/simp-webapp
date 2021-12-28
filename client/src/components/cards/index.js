@@ -9,19 +9,23 @@ import { useNavigate ,useLocation} from "react-router-dom";
 
 function BasicCard({currentItems},props) {
   let navigate = useNavigate();
-  let location=useLocation();
+
+  function handelonclick(data){
+    console.log(data);
+    if(data.ragistration_required=="true"){
+      console.log("authenticate triggered")
+      navigate('/authenticate',{state:{link:data.src}});
+    }
+    else if(data.ragistration_required=="false"){
+      console.log("simulation triggered")
+      navigate('/simulation',{state:{link:data.src}});
+    }
+  }
 
   return (
       <div className='cards1' id='cards1'>
         {currentItems?.map((data, k) => (
-                    <Card sx={{ minWidth: 275 }} key={k} onClick={()=>{
-                      if(data.ragistration_required){
-                        navigate('/authenticate',{state:{link:data.src}});
-                      }
-                      else{
-                        navigate('/simulation',{state:{link:data.src}});
-                      }
-                       }} className="cards-css">
+                    <Card sx={{ minWidth: 275 }} key={k} onClick={()=>{handelonclick(data)}} className="cards-css">
                     <CardContent>
                      <img src={data.image} width={275} className='image2'></img>
                      <Typography >

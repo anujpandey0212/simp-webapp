@@ -74,7 +74,7 @@ const UserSchema = Mongoose.Schema({
   }
 });
 
-//---------------------------------Handeling the collections of records-----------------------------------------------------
+//---------------------------------Handeling the collections of database-----------------------------------------------------
 
 const Simulations = Mongoose.model('records', SimulationSchema);
 const Users =Mongoose.model('users',UserSchema);
@@ -90,6 +90,8 @@ Users.find({ name: 'anuj'}, function (err, docs) {
 
 //---------------------------------Handling get and post request-----------------------------------------------------
 
+
+//all get request comes here only
 app.get("/api", (req, res) => {
   var query = req.params.query;
     Simulations.find({
@@ -123,10 +125,12 @@ app.get("/signin",(req,res)=>{
   })
 });
 
+//do not touch this 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
+//all post request comes here
 app.post("/api",(req,res)=>{
   console.log(req.body);
   const {name,topic_name,image,src,description,ragistration_required}=req.body;
