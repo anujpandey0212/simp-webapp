@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import "./header.css"
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header() {
 
@@ -24,13 +25,18 @@ export default function Header() {
   });
 
 const navigate=useNavigate();
+const { loginWithRedirect } = useAuth0();
+const { logout } = useAuth0();
+const {user,isAuthenticated}=useAuth0();
 
 function login(){
-  navigate('/signin');
+  // navigate('/signin');
+    loginWithRedirect()
 }
 
 function ragister(){
-
+  logout({ returnTo: window.location.origin })
+  // navigate("/ragister");
 }
 
   const displayDesktop = () => {
@@ -51,7 +57,7 @@ function ragister(){
   Login
 </button> 
 <button onClick={ragister} style={{marginLeft:120}}>
-  Ragister
+  LogOut
 </button>
 {/* </React.View> */}
     </Toolbar>

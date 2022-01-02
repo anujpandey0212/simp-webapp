@@ -21,6 +21,7 @@ export default function Ragister(){
             })
         };
         fetch('/signin', requestOptions)
+        localStorage.setItem("isAuthenticated", "true");
     }
     return (
         <div>

@@ -13,7 +13,7 @@ const Main = () => {
   console.log("this", isAuthenticated);
   return (
     <Routes>
-      <Route path='/' element={<Home itemsPerPage={4}/>}></Route>
+      <Route path='/' element={<Home itemsPerPage={8}/>}></Route>
       <Route path='/signin' element={<Login/>}></Route>
       <Route path='/ragister' element={<Ragister/>}></Route>
       <Route path='/editor' element={<Editor/>}></Route>
