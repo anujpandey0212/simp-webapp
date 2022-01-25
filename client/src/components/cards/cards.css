@@ -39,3 +39,6 @@
   .pagination1{
     bottom: 0;
   }
+  #pagination1{
+    margin-top: auto;
+  }

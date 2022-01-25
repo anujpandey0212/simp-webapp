@@ -59,6 +59,17 @@ const SimulationSchema = Mongoose.Schema({
 
 });
 
+const Categoriesshema=Mongoose.Schema({
+  name:{
+    type:String,
+    required:true
+  },
+  tags:{
+    type:Array,
+    required:true
+  }
+});
+
 const UserSchema = Mongoose.Schema({
   name: {
       type: String,
@@ -77,6 +88,7 @@ const UserSchema = Mongoose.Schema({
 //---------------------------------Handeling the collections of database-----------------------------------------------------
 
 const Simulations = Mongoose.model('records', SimulationSchema);
+const Categories=Mongoose.model('categories',Categoriesshema);
 const Users =Mongoose.model('users',UserSchema);
 
 Users.find({ name: 'anuj'}, function (err, docs) {
@@ -107,6 +119,22 @@ app.get("/api", (req, res) => {
         }
     })
 });
+
+app.get("/category",(req,res)=>{
+  var query=req.params.query;
+  Categories.find({
+    "request":query
+  },function(err,result){
+    if (err) throw err;
+        if (result) {
+            res.json(result)
+        } else {
+            res.send(JSON.stringify({
+                error : 'Error'
+            }))
+        }
+  })
+})
 
 app.get("/signin",(req,res)=>{
   var query=req.params.query;

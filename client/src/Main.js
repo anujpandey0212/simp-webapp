@@ -7,6 +7,7 @@ import Login from './components/login';
 import Ragister from './components/ragister';
 import { ProtectedRoute } from './protected route';
 import Notfound from './components/not_fouund';
+import Result from './components/result';
 
 const Main = () => {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
@@ -26,6 +27,7 @@ const Main = () => {
           }
         />
       <Route path='/simulation' element={<Simulation/>}></Route>
+      <Route path='/result' element={<Result itemsPerPage={8}/>}></Route>
     </Routes>
   );
 }

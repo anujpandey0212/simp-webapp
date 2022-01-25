@@ -1,25 +1,35 @@
 import React from "react";
 import "./notfound.css";
 import {useNavigate} from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import image from "../../assets/usernotfound.png"
+import { Button } from "@material-ui/core";
+import { useEffect } from "react";
 
 export default function Notfound(){
 
     let navigate=useNavigate();
+    const {user,isAuthenticated}=useAuth0();
+    const { loginWithRedirect } = useAuth0();
+    const { logout } = useAuth0();
 
     function handelclick(event){
-        if(event.target.id=="login_button"){
-            navigate("/signin")
-        }
-        else if(event.target.id=="ragister_button"){
-            navigate("/ragister")
-        }
+          // navigate("/signin")
+            loginWithRedirect();     
     }
+
+    useEffect(()=>{
+        var division=document.getElementById("division1");
+        division.style.display="block";
+    })
+    
+    
     return(
         <div>
-            <h1>User not found </h1>
-            <button type="button" class="btn btn-primary" id="login_button" onClick={handelclick}>log in</button>
-            <h1>or if not ragistered</h1>
-            <button type="button" class="btn btn-primary" id="ragister_button" onClick={handelclick}>ragistered</button>
+            <img src={image} id="illustrator"></img>
+            {/* <a href='https://www.freepik.com/vectors/box'>Box vector created by stories - www.freepik.com</a> */}
+            <p className="para">login in order to see the simulation</p>
+            <Button className="button1" variant="contained" onClick={handelclick}>login</Button>
         </div>
     )
 }

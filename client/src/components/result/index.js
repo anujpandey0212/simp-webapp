@@ -3,12 +3,13 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import "./cards.css";
+import "../cards/cards.css";
 import Pagination from '@mui/material/Pagination';
 import { useNavigate ,useLocation} from "react-router-dom";
 
 function BasicCard({currentItems},props) {
   let navigate = useNavigate();
+
 
   function handelonclick(data){
     console.log(data);
@@ -45,28 +46,40 @@ function BasicCard({currentItems},props) {
   );
 }
 
-export default function PaginatedItems({ itemsPerPage }) {
+export default function Results({ itemsPerPage }) {
   // We start with an empty list of items.
   const [currentItems, setCurrentItems] = React.useState(null);
   const [pageCount, setPageCount] = React.useState(0);
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = React.useState(0);
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState(0);
+  const location=useLocation();
   React.useEffect(() => {
     var division=document.getElementById("division1");
     division.style.height="auto";
     fetch("/api")
       .then((res) => res.json())
-      .then((data) => {setData(data);
-      const endOffset = itemOffset + itemsPerPage;
-      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-      setCurrentItems(data.slice(itemOffset, endOffset));
-      setPageCount(Math.ceil(data.length /itemsPerPage));
+      .then((data) => {
+        var copy_data=[];
+            data.forEach((e) => {
+            //    console.log(e);
+                if(e.topic_name===location.state.name){
+                    copy_data.push(e);
+                    setData(copy_data);
+                }
+
+            });
+        setData(copy_data);
+        console.log(copy_data);
+        const endOffset = itemOffset + itemsPerPage;
+        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        setCurrentItems(copy_data.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(copy_data.length /itemsPerPage));
     })
     // Fetch items from another resources.
    
-  }, [itemOffset, itemsPerPage]);
+  }, [itemOffset, itemsPerPage,location]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event,value) => {

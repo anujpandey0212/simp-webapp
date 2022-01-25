@@ -2,3 +2,18 @@
     height: 44px;
     width:150px;
 }
+#buttonbhai{
+    margin-left: auto;
+  }
+#userimage{
+    border-radius: 50%;
+    width: 80px;
+    padding-bottom: 5px;
+}
+#userbox{
+    text-align: center;
+    padding-bottom: 7px;
+}
+#divider{
+    background-color: rgba(0, 0, 0, 0.50);
+}
