@@ -5,7 +5,82 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import "./cards.css";
 import Pagination from '@mui/material/Pagination';
-import { useNavigate ,useLocation} from "react-router-dom";
+import { useNavigate ,useLocation, useSearchParams} from "react-router-dom";
+import TextField from '@mui/material/TextField';
+import { Autocomplete } from '@mui/material'
+
+
+function Grouped() {
+  const [data,setData]=React.useState(null);
+  var options=[]
+  const navigate=useNavigate();
+
+  const handelselect=(data1)=>{
+    if(data1.target.value!=""){
+      console.log("triggered3")
+      data.forEach(element => {
+        if(element.name==data1.target.value){
+          console.log("triggered2")
+          if(element.ragistration_required=="true"){
+           
+            navigate('/authenticate',{state:{link:element.src}});
+          }
+          else if(element.ragistration_required=="false"){
+            console.log("triggered")
+            navigate('/simulation',{state:{link:element.src}});
+          }
+        }
+      });
+    }
+  }
+
+const search=()=>{
+  if(data==null){
+    return(
+      <p>loading.....</p>
+    )
+  }
+  else{
+    return(
+      <Autocomplete
+        id="grouped-demo"
+        options={data.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+        groupBy={(option) => option.firstLetter}
+        getOptionLabel={(option) => option.name}
+        sx={{ width: 300 }}
+        onSelect={handelselect}
+        renderInput={(params) => <TextField {...params} label="Search Simulations" />}
+      />
+    )
+  }
+}
+
+  React.useEffect(()=>{
+    fetch("/api")
+    .then((res)=>res.json())
+    .then((data)=>{
+      console.log(data)
+      options = data?.map((option) => {
+       const firstLetter = option.name[0].toUpperCase();
+       return {
+         firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
+         ...option,
+       };
+     });
+     console.log(options)
+     setData(options);
+    })
+      
+  },[])
+
+  return (
+    <div>
+      { 
+        search()
+      }
+    </div>
+  );
+}
 
 function BasicCard({currentItems},props) {
   let navigate = useNavigate();
@@ -79,8 +154,10 @@ export default function PaginatedItems({ itemsPerPage }) {
 
   return (
     <div className='pagination_cards'>
+      <Grouped/>
       <BasicCard currentItems={currentItems}/>
       <Pagination count={pageCount} color="primary" className="pagination1" id='pagination1' onChange={handlePageClick}/>
     </div>
   );
 }
+

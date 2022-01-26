@@ -96,7 +96,7 @@ export default function Header() {
     
     if (isAuthenticated) {
       return (
-        <Button onClick={ragister} id="buttonbhai" variant="contained">
+        <Button onClick={ragister} id="buttonbhai">
           Logout
         </Button>
       );
@@ -105,7 +105,6 @@ export default function Header() {
         <Button 
         onClick={login}
         id="buttonbhai"
-        variant="contained"
         >
           Login
         </Button>

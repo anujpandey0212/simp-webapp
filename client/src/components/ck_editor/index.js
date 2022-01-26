@@ -26,7 +26,7 @@ export default function Editor() {
 
     var division = document.getElementById("division1");
     division.style.display = "block";
-  },[user]);
+  },[useNavigate]);
 
   const handelsubmit = () => {
     if (isAuthenticated) {
@@ -72,7 +72,6 @@ export default function Editor() {
       <div className="form-group">
         <label>Title</label>
         <input
-          type="password"
           className="form-control"
           id="exampleInputPassword1"
           placeholder="Title"
@@ -81,7 +80,6 @@ export default function Editor() {
       <div className="form-group">
         <label>Image Url</label>
         <input
-          type="password"
           className="form-control"
           id="exampleInputPassword2"
           placeholder="Url of Image"
@@ -90,7 +88,6 @@ export default function Editor() {
       <div className="form-group">
         <label>Source Url</label>
         <input
-          type="password"
           className="form-control"
           id="exampleInputPassword3"
           placeholder="Source Url"
@@ -99,7 +96,6 @@ export default function Editor() {
       <div className="form-group">
         <label>Ragistration required</label>
         <input
-          type="password"
           className="form-control"
           id="exampleInputPassword4"
           placeholder="Source Url"
@@ -112,6 +108,7 @@ export default function Editor() {
 
       <Button
         variant="contained"
+        id="add_button"
         onClick={() => {
           handelsubmit();
         }}
