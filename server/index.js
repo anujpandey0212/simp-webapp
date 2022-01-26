@@ -67,6 +67,10 @@ const Categoriesshema=Mongoose.Schema({
   tags:{
     type:Array,
     required:true
+  },
+  tagsm:{
+    type:Array,
+    required:true
   }
 });
 

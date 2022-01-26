@@ -40,6 +40,7 @@ export default function Header() {
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
   const [data,setData]=React.useState(null);
+  const [datam,setDatam]=React.useState(null);
 
   const handleClick = () => {
     setOpen(!open);
@@ -53,6 +54,7 @@ export default function Header() {
     fetch("/category")
       .then((res)=>res.json())
       .then((data) => {setData(data[0].tags)
+        setDatam(data[0].tagsm)
       })
   },[user])
 
@@ -212,12 +214,14 @@ export default function Header() {
         <Collapse in={open1} timeout="auto" unmountOnExit>
       {/* //---------------------------------------topics in Maths------------------------------------- */}
           <List component="div" disablePadding onClick={toggleDrawer(anchor, false)}>
-            <ListItemButton sx={{ pl: 4 }}>
+          {datam?.map((data)=>(
+              <ListItemButton sx={{ pl: 4 }} onClick={()=>{navigate("/result",{state:{name:data}})}}>
               <ListItemIcon>
-                <FiberManualRecordIcon />
+                <TerminalIcon />
               </ListItemIcon>
-              <ListItemText primary="Starred" />
+              <ListItemText primary={data}/>
             </ListItemButton>
+            ))}
           </List>
         </Collapse>
     {/* //---------------------------------------------list ends--------------------------------------------- */}
