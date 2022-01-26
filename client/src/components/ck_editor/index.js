@@ -37,7 +37,7 @@ export default function Editor() {
           body: JSON.stringify({
             name: document.getElementById("exampleInputEmail1").value,
             topic_name: document.getElementById("exampleInputPassword1").value,
-            image: document.getElementById("exampleInputPassword3").value,
+            image: document.getElementById("exampleInputPassword2").value,
             src: document.getElementById("exampleInputPassword3").value,
             ragistration_required: document.getElementById(
               "exampleInputPassword4"
