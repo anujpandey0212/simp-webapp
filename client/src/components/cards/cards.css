@@ -8,6 +8,7 @@
 }
 .cards-css{
     margin: 1rem;
+    position: relative;
     height:240px;
     border-radius: 5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -15,6 +16,7 @@
     -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     cursor: pointer;
+    overflow-y: hidden;
 }
   .cards-css:hover {
     -webkit-transform: scale(1.25, 1.25);
@@ -46,3 +48,25 @@
   .css-1na68kg{
     margin-top: 20px;
   }
+  .description{
+    background-color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: white;
+    padding:1rem;
+    max-height: 100%;
+    transform: translateY(101%);
+    transition: transform 0.3s ease-in ;
+  }
+  .cards-css:hover .description{
+    transform: translateY(0);
+  }
+  .sim_name{
+    padding-top: 20px;
+  }
+  .sim_des{
+    color:black;
+  }
+  

@@ -29,12 +29,14 @@ function BasicCard({currentItems},props) {
                     <Card sx={{ minWidth: 275 }} key={k} onClick={()=>{handelonclick(data)}} className="cards-css">
                     <CardContent>
                      <img src={data.image} width={275} className='image2'></img>
-                     <Typography >
-                        Category - {data.name}
+                     <Typography className='sim_name'>
+                        {data.name}
                       </Typography>
-                      <Typography>
-                        Topic Name - {data.topic_name}
-                      </Typography>
+                      <div className='description'>
+                        <Typography className='sim_des'>
+                          {data.description}
+                        </Typography>
+                      </div>
                     </CardContent>
                     <CardActions>  
                     </CardActions>            
