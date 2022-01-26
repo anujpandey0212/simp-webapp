@@ -74,7 +74,7 @@ const search=()=>{
   },[])
 
   return (
-    <div id='searchbox_division'>
+    <div>
       { 
         search()
       }
